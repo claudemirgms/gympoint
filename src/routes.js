@@ -5,6 +5,8 @@ import StudentsController from './app/Controllers/StudentController';
 import PlanController from './app/Controllers/PlanController';
 import EnrollmentController from './app/Controllers/EnrollmentController';
 import CheckinController from './app/Controllers/CheckinController';
+import HelpOrderController from './app/Controllers/HelpOrderController';
+import AnswerController from './app/Controllers/AnswerController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -15,6 +17,12 @@ routes.post('/session', SessionController.store);
 // Checkin
 routes.post('/students/:id/checkins', CheckinController.store);
 routes.get('/students/:id/checkins', CheckinController.index);
+
+// HelpOrder
+routes.post('/students/:id/help-orders', HelpOrderController.store);
+routes.get('/students/:id/help-orders', HelpOrderController.index);
+routes.get('/help-orders', AnswerController.index);
+routes.post('/help-orders/:id/answer', AnswerController.update);
 
 // Authentication
 routes.use(authMiddleware);
