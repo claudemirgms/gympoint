@@ -35,15 +35,17 @@ class PlanController {
   }
 
   async delete(req, res) {
-    const plan = await Plan.findByPk(req.params.id);
+    const { id } = req.params;
+
+    const plan = await Plan.findByPk(id);
 
     if (!plan) {
       return res.status(400).json({ error: 'plan not found' });
     }
 
-    await plan.delete();
+    await plan.destroy();
 
-    return res.status(200);
+    return res.json(plan);
   }
 }
 
