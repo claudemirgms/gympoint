@@ -59,7 +59,9 @@ class EnrollmentController {
   }
 
   async index(req, res) {
-    const enrollment = await Enrollment.findAll();
+    const enrollment = await Enrollment.findAll({
+      attributes: ['id', 'start_date', 'end_date', 'price', 'active'],
+    });
     return res.json(enrollment);
   }
 
